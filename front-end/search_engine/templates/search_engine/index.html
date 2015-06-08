@@ -1,6 +1,6 @@
 {% load staticfiles %}
-{% load bootstrap %}
 {% load crispy_forms_tags %}
+{% crispy example_form example_form.helper %}
 
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
@@ -51,6 +51,23 @@
         <h1 class="heading">MRRS</h1>
         <br />
 
+      <form id="category_form" method="post" action="/search_engine/add_category/">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" name="submit" value="Create Category" />
+        </form>  
+
+
         <div class="col-lg-9 col-center">
           <form role="form" action="/get_search_word/" method="post">
             {{ form|crispy }}
@@ -68,6 +85,9 @@
         </div><!-- /.col-lg-9 -->
     </div>
 
+<a href="/rango/add_category/">Add a New Category</a>
+
+
     <footer class="footer">
       <div class="container">
         <p class="text-center text-muted">Course project for ICBMIT,
@@ -83,4 +103,5 @@
     <script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="index/ie10-viewport-bug-workaround.js"></script>
-</body></html>
+  </body>
+</html>

@@ -109,4 +109,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CRISPY_TEMPLATE_PACK = bootstrap2
+CRISPY_TEMPLATE_PACK = "bootstrap3"
